@@ -11,4 +11,4 @@ python-dotenv
 sentence-transformers
 chromadb
 gdown
-pysqlite3
+pysqlite3-binary
