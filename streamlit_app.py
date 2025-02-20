@@ -19,6 +19,10 @@ from langchain.llms.base import LLM
 from groq import Groq  # pip install groq
 import streamlit as st
 
+# Define the DB folder location
+DB_FOLDER = "./chroma_db_islamic_text"
+
+
 def download_drive_folder_if_not_exists(folder_path: str, folder_url: str):
     """
     Downloads a folder from Google Drive using gdown if it does not exist locally.
