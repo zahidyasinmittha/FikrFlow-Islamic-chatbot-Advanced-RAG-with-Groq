@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 import os
 from typing import List, Any, ClassVar, Optional
 import pysqlite3 as sqlite3
@@ -18,8 +17,6 @@ from langchain.llms.base import LLM
 # Groq LLM client
 from groq import Groq  # pip install groq
 import streamlit as st
-
-load_dotenv()  
 
 def download_drive_folder_if_not_exists(folder_path: str, folder_url: str):
     """
@@ -400,7 +397,7 @@ def main():
     if "prompt_engineer" not in st.session_state:
         st.session_state["prompt_engineer"] = PromptEngineer()
     if "groq_llm" not in st.session_state:
-        GROQ_API_KEY = os.getenv("GROQ_API_KEY")  # Replace with your key
+        GROQ_API_KEY = "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"  # Replace with your key
         GROQ_MODEL_NAME = "llama-3.3-70b-versatile"  # Example model name
         st.session_state["groq_llm"] = GroqLLM(model=GROQ_MODEL_NAME, api_key=GROQ_API_KEY)
     
