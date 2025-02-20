@@ -3,6 +3,7 @@ from typing import List, Any, ClassVar, Optional
 import pysqlite3 as sqlite3
 import sys
 sys.modules["sqlite3"] = sqlite3
+import shutil
 import torch
 import torch
 torch.classes.__path__ = []
