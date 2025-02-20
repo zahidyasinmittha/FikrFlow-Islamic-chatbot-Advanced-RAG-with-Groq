@@ -11,4 +11,3 @@ sentence-transformers
 chromadb
 gdown
 pysqlite3-binary
-shutil
