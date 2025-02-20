@@ -38,3 +38,5 @@ Clone the repository from GitHub:
 ```bash
 git clone https://github.com/zahidyasinmittha/FikrFlow-Islamic-chatbot-Advanced-RAG-with-Groq.git
 cd FikrFlow-Islamic-chatbot-Advanced-RAG-with-Groq
+
+[Download chroma_db_islamic_text Folder](https://drive.google.com/drive/folders/1EsZ3SuS_z_vXUZFhDJanQa_8l51_-bg-)
