@@ -495,6 +495,8 @@ def main():
                 )
         else:
             st.info("No conversation yet. Ask a question below!")
+    if os.path.exists(DB_FOLDER):
+        shutil.rmtree(DB_FOLDER)
 
 if __name__ == "__main__":
     main()
