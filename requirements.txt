@@ -1,0 +1,13 @@
+streamlit
+pandas
+transformers
+torch
+langchain
+langchain_community
+groq
+nltk
+rank_bm25
+python-dotenv
+sentence-transformers
+chromadb
+gdown
