@@ -3,7 +3,6 @@ from typing import List, Any, ClassVar, Optional
 import pysqlite3 as sqlite3
 import sys
 sys.modules["sqlite3"] = sqlite3
-import shutil
 import torch
 import torch
 torch.classes.__path__ = []
@@ -18,10 +17,6 @@ from langchain.llms.base import LLM
 # Groq LLM client
 from groq import Groq  # pip install groq
 import streamlit as st
-
-# Define the DB folder location
-DB_FOLDER = "./chroma_db_islamic_text"
-
 
 def download_drive_folder_if_not_exists(folder_path: str, folder_url: str):
     """
@@ -500,8 +495,6 @@ def main():
                 )
         else:
             st.info("No conversation yet. Ask a question below!")
-    if os.path.exists(DB_FOLDER):
-        shutil.rmtree(DB_FOLDER)
 
 if __name__ == "__main__":
     main()
