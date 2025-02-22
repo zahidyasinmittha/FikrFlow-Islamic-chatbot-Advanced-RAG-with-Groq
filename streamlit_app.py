@@ -360,7 +360,7 @@ def main():
     ###################################################
     # 3) APP TITLE
     ###################################################
-    st.title("FikrFlow")
+    st.title("FikrFlow BY Zahid Mittha")
     
     ###################################################
     # 4) INITIALIZE OTHER COMPONENTS (UNCHANGED)
