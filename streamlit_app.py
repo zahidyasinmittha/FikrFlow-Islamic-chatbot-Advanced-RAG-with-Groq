@@ -28,12 +28,8 @@ def download_drive_folder_if_not_exists(folder_path: str, folder_url: str):
     """
     if not os.path.exists(folder_path):
         os.makedirs(folder_path, exist_ok=True)
-        st.info("Downloading database folder from Google Drive...")
         # gdown.download_folder downloads files into the given output directory.
         gdown.download_folder(url=folder_url, output=folder_path, quiet=False, use_cookies=False)
-        st.success("Download complete.")
-    else:
-        st.info("Database folder already exists. Skipping download.")
 
 try:
     from rank_bm25 import BM25Okapi
