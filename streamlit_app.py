@@ -167,6 +167,7 @@ class PromptEngineer:
             prompt_parts.append(f"Relevant Documents:\n{docs_str}")
 
         prompt_parts.append(f"User Query:\n{user_query}")
+        prompt_parts.append("You only answer Islamic questions, If question is not related to islam Donot answer")
         prompt_parts.append("Provide a detailed answer, referencing the documents above as needed.")
 
         return "\n\n".join(prompt_parts)
