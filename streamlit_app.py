@@ -17,6 +17,8 @@ from langchain.llms.base import LLM
 # Groq LLM client
 from groq import Groq  # pip install groq
 import streamlit as st
+import nltk
+nltk.download('punkt_tab')
 
 def download_drive_folder_if_not_exists(folder_path: str, folder_url: str):
     """
@@ -366,22 +368,38 @@ def main():
     # 4) INITIALIZE OTHER COMPONENTS (UNCHANGED)
     ###################################################
     if "vectorstore" not in st.session_state:
-        CHROMA_DIR = "./chroma_db_islamic_text"  # Adjust if needed
+        CHROMA_DIR = "./chroma_db_islamic_text"
         if not os.path.exists(CHROMA_DIR):
             st.error(f"Could not find Chroma DB directory: {CHROMA_DIR}")
             return
+
         embed_model = HuggingFaceEmbeddings(model_name="sentence-transformers/LaBSE")
         st.session_state["vectorstore"] = Chroma(
             persist_directory=CHROMA_DIR,
             embedding_function=embed_model
         )
-    if "documents" not in st.session_state:
-        st.session_state["documents"] = []
-    if "hybrid_retriever" not in st.session_state:
+
+        # ─────────────────────────────────────────────
+        #  Load all docs from the underlying collection
+        #  Flatten them into a single list of strings
+        # ─────────────────────────────────────────────
+        collection_data = st.session_state["vectorstore"]._collection.get(include=["documents"])
+        raw_docs = collection_data["documents"]
+
+        all_docs_flat = []
+        for item in raw_docs:
+            if isinstance(item, list):
+                all_docs_flat.extend(item)
+            else:
+                all_docs_flat.append(item)
+
+        st.session_state["documents"] = all_docs_flat
+
         st.session_state["hybrid_retriever"] = HybridRetriever(
             chroma_vectorstore=st.session_state["vectorstore"],
             documents=st.session_state["documents"]
         )
+
     if "multi_step_retriever" not in st.session_state:
         st.session_state["multi_step_retriever"] = MultiStepRetriever(
             st.session_state["hybrid_retriever"]
