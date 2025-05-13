@@ -373,7 +373,12 @@ def main():
             st.error(f"Could not find Chroma DB directory: {CHROMA_DIR}")
             return
 
-        embed_model = HuggingFaceEmbeddings(model_name="sentence-transformers/LaBSE")
+        from sentence_transformers import SentenceTransformer
+        import torch
+
+        device = "cpu"  # Force CPU
+        model = SentenceTransformer("sentence-transformers/LaBSE", device=device)
+        embed_model = HuggingFaceEmbeddings(model_name="sentence-transformers/LaBSE", model_kwargs={"device": device})
         st.session_state["vectorstore"] = Chroma(
             persist_directory=CHROMA_DIR,
             embedding_function=embed_model
